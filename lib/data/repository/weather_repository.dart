@@ -19,12 +19,12 @@ class WeatherRepository {
   }
 
   static Future<WeatherObjectModel?> getFiveDaysForecast(
-      String cityName) async {
+      String cityName, int numberOfDays) async {
     WeatherObjectModel? weatherObjectModel;
     WeatherClient weatherForecastClient = WeatherClient(Dio());
     await weatherForecastClient
-        .getFiveDaysForecast(
-            'aa5c8a71bfd24440abf105743220811', cityName, 5, 'no', 'no')
+        .getFiveDaysForecast('aa5c8a71bfd24440abf105743220811', cityName,
+            numberOfDays, 'no', 'no')
         .then((response) {
       weatherObjectModel = response;
     }).onError((error, stackTrace) {});

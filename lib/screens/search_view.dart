@@ -83,7 +83,7 @@ class SearchView extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );

@@ -24,3 +24,12 @@ class ForecastNotLoaded extends FiveDaysForecastState {
   @override
   List<Object> get props => [error];
 }
+
+class SelectedDayState extends FiveDaysForecastState {
+  final String selectedDay;
+
+  SelectedDayState(this.selectedDay);
+
+  @override
+  List<Object> get props => [this.selectedDay];
+}

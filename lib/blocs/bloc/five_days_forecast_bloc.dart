@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,8 +13,8 @@ class FiveDaysForecastBloc
     on<GetFiveDaysForecastData>((event, emit) async {
       emit(ForecastIsLoading());
       try {
-        final weatherObjectModel =
-            await WeatherRepository.getFiveDaysForecast(event.fiveDaysForecast);
+        final weatherObjectModel = await WeatherRepository.getFiveDaysForecast(
+            event.fiveDaysForecast, event.inputNumber);
         if (weatherObjectModel == null) {
           emit(const ForecastNotLoaded('Error'));
         } else {
@@ -25,6 +24,11 @@ class FiveDaysForecastBloc
       } catch (e) {
         emit(ForecastNotLoaded(e.toString()));
       }
+    });
+
+    String selectedDay = '';
+    on<SelectedDayEvent>((event, emit) async {
+      emit(ForecastIsLoading());
     });
   }
 }
