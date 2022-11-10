@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/bloc/five_days_forecast_bloc.dart';
 import '../blocs/weather_bloc/weather_bloc.dart';
 import '../models/weather_object_model.dart';
 import 'five_days_forecast.dart';
