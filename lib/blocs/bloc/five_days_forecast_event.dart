@@ -14,10 +14,12 @@ class GetFiveDaysForecastData extends FiveDaysForecastEvent {
   const GetFiveDaysForecastData(this.fiveDaysForecast, this.inputNumber);
 }
 
+// ignore: must_be_immutable
 class SelectedDayEvent extends FiveDaysForecastEvent {
   String day;
   SelectedDayEvent(this.day);
 
   @override
+  // ignore: unnecessary_this
   List<Object> get props => [this.day];
 }

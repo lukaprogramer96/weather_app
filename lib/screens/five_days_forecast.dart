@@ -1,10 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../blocs/bloc/five_days_forecast_bloc.dart';
+import '../blocs/weather_bloc/weather_bloc.dart';
 
 class FiveDaysForecast extends StatelessWidget {
   const FiveDaysForecast(
@@ -14,7 +13,22 @@ class FiveDaysForecast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? dropdownValue;
+    final weatherBloc = BlocProvider.of<WeatherBloc>(context);
+    final fiveDaysForecastBloc = BlocProvider.of<FiveDaysForecastBloc>(context);
+
+    // final mapDays = {
+    //   1: 'One Day',
+    //   2: 'Two Days',
+    //   3: 'Three Days',
+    //   4: 'Four Days',
+    //   5: 'Five Days',
+    //   6: 'Six Days',
+    //   7: 'Seven Days',
+    //   8: 'Eight Days',
+    //   9: 'Nine Days',
+    //   10: 'Ten',
+    // };
+
     var days = [
       'One Day',
       'Two Days',
@@ -27,9 +41,12 @@ class FiveDaysForecast extends StatelessWidget {
       'NineDays',
       'Ten Days'
     ];
+    String? dropdownValue = days.first;
+
     return BlocProvider(
-      create: (context) => FiveDaysForecastBloc()
-        ..add(GetFiveDaysForecastData(cityName, numberOfDays ?? 5)),
+      create: (context) => fiveDaysForecastBloc
+        ..add(GetFiveDaysForecastData(
+            cityName, days.indexOf(dropdownValue!) + 1)),
       child: BlocBuilder<FiveDaysForecastBloc, FiveDaysForecastState>(
           builder: (context, state) {
         if (state is FiveDaysForecastInitial) {
@@ -54,6 +71,8 @@ class FiveDaysForecast extends StatelessWidget {
                           setState(() {
                             dropdownValue = newValue;
                           });
+                          fiveDaysForecastBloc.add(GetFiveDaysForecastData(
+                              cityName, days.indexOf(dropdownValue!) + 1));
                         });
                   },
                 ),

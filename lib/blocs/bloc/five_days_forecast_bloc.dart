@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -26,6 +27,7 @@ class FiveDaysForecastBloc
       }
     });
 
+    // ignore: unused_local_variable
     String selectedDay = '';
     on<SelectedDayEvent>((event, emit) async {
       emit(ForecastIsLoading());

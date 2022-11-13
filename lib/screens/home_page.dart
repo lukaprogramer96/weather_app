@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/bloc/five_days_forecast_bloc.dart';
 import '../blocs/weather_bloc/weather_bloc.dart';
 import 'search_view.dart';
 
@@ -15,8 +16,15 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: BlocProvider(
-        create: (context) => WeatherBloc(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => WeatherBloc(),
+          ),
+          BlocProvider(
+            create: (context) => FiveDaysForecastBloc(),
+          ),
+        ],
         child: const SearchView(),
       ),
     );

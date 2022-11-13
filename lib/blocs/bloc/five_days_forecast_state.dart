@@ -28,8 +28,9 @@ class ForecastNotLoaded extends FiveDaysForecastState {
 class SelectedDayState extends FiveDaysForecastState {
   final String selectedDay;
 
-  SelectedDayState(this.selectedDay);
+  const SelectedDayState(this.selectedDay);
 
   @override
+  // ignore: unnecessary_this
   List<Object> get props => [this.selectedDay];
 }
